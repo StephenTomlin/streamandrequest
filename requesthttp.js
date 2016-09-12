@@ -1,9 +1,16 @@
 var request = require('request');
-request('http://www.google.com', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    printHTML(body); // Show the HTML for the Google homepage.
-  }
-});
-function printHTML(callback) {
-  console.log(callback)
+function printExampleHTML(callback) {
+  request('http://www.google.com', function (error, response, body) {
+    if (error) {
+      throw error;
+    }
+    callback(body);
+  });
+
 }
+
+function printHTML(body) {
+  console.log(body)
+}
+printExampleHTML(printHTML)
+
